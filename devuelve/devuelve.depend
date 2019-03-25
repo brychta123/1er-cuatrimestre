@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1553520226 source:c:\users\alumno\desktop\devuelve\main.c
+	<stdio.h>
+	<stdlib.h>
+
