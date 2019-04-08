@@ -5,11 +5,14 @@
 int main()
 {
 
-  char palabra[10]="Philipa", otrapalabra[100]="programacion";
+  char palabra[10]="PHILIPA", otrapalabra[100]="programacion";
 
   int comp;
-  comp=stricmp(palabra,"Philipa");
-  printf("%d",comp);
+
+  //strupr lo convierte en mayuscula
+  strlwr(palabra);//lo convierte en minuscula
+  //comp=stricmp(palabra,"Philipa");
+  printf("%s--",palabra);
 
 
 
