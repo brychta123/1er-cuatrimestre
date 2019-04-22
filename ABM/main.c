@@ -1,77 +1,80 @@
-#include <stdio.h>
+
 #include <stdlib.h>
-#define T 3
+#include "Empleado.h"
+
+#define T 10
 
 
+int menuDeOpciones(char[]);
 
+/*
+Informes:
 
-
-//defino la estructura
-typedef struct
-{
-    int legajo;
-    char nombre[20];
-    char sexo;
-    float sueldoBruto;
-    float sueldoNeto;
-} eEmpleado;
-
-void mostrarEmpleado(eEmpleado);
-void cargarEmpleado(eEmpleado[], int tam);
-
+1- EL/LOS Empleados con mayor sueldo.
+2- Cantidad de empleados que se llamen carlos y ganen mas de 20000
+*/
 
 int main()
-
 {
+
+    int indice;
+    int opcion;
+
     eEmpleado lista[T];
+    inicializarEmpleados(lista,T);
 
-    int i;
-
-
-
-
-
-   cargarEmpleado(lista ,T);
+    eSector sectores[3] = {{1,"Contabilidad",100},{2,"Sistemas",200},{3, "RRHH", 150}};
 
 
 
-        for(i=0; i<T; i++)
+
+hardcodearDatosEmpleados(lista,6);
+    do
+    {
+        opcion = menuDeOpciones("1.Alta\n2.Baja\n3.Modificar\n4.Mostrar\n5.Informar\n10.Salir\nElija una opcion: ");
+        switch(opcion)
         {
-            mostrarEmpleado(lista[i]);
+            case 1:
+                cargarEmpleado(lista,  T);
+
+            break;
+            case 2:
+                borrarEmpleado(lista, T, 3);
+                break;
+            case 3:
+
+                modificar(lista, T, 3);
+            break;
+
+            case 4:
+                mostrarListaEmpleados(lista, T, sectores, 3);
+                break;
+            case 5:
+
+                mostrarEmpleadosSueldoMaximo(lista,T);
+                printf("La cantidad de carlos es: %d\n", contarCarlos(lista,T));
+
+                break;
+
+
         }
-        return 0;
-    }
+    }while(opcion!=10);
 
 
 
-void mostrarEmpleado(eEmpleado unEmpleado)
-{
+    //inicializarEmpleados(lista, T);
 
-    printf("%d-%s-%c-%f-%f\n", unEmpleado.legajo,unEmpleado.nombre, unEmpleado.sexo, unEmpleado.sueldoBruto,unEmpleado.sueldoNeto);
 
+
+
+    return 0;
 }
 
-        void cargarEmpleado(eEmpleado lista[], int tam)
-        {
-            int i;
-            for(i=0; i<tam; i++)
-     {
+int menuDeOpciones(char mensaje[])
+{
+    int opcion;
+    printf("%s", mensaje);
+    scanf("%d", &opcion);
 
-
-
-                printf("Ingrese legajo: ");
-            scanf("%d", &lista[i].legajo);
-            printf("Ingrese nombre: ");
-            fflush(stdin);
-            gets(lista[i].nombre);
-            printf("Ingrese sexo: ");
-            fflush(stdin);
-            scanf("%c", &lista[i].sexo);
-            printf("Ingrese sueldo bruto: ");
-            scanf("%f", &lista[i].sueldoBruto);
-            lista[i].sueldoNeto = lista[i].sueldoBruto*0.85;
-
-     }
-           }
-
-
+    return opcion;
+}
